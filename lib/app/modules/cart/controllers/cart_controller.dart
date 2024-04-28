@@ -6,10 +6,9 @@ import '../../../data/models/product_model.dart';
 import '../../base/controllers/base_controller.dart';
 
 class CartController extends GetxController {
-
   // to hold the products in cart
   List<ProductModel> products = [];
-  
+
   @override
   void onInit() {
     getCartProducts();
@@ -17,13 +16,12 @@ class CartController extends GetxController {
   }
 
   /// when the user press on purchase now button
-  onPurchaseNowPressed() {
+  onPurchaseNowPressed({bool showSnackBar = true}) {
     clearCart();
     Get.back();
-    CustomSnackBar.showCustomSnackBar(
-      title: 'Purchased',
-      message: 'Order placed with success'
-    );
+    if (showSnackBar) {
+      CustomSnackBar.showCustomSnackBar(title: 'Purchased', message: 'Order placed with success');
+    }
   }
 
   /// get the cart products from the product list
