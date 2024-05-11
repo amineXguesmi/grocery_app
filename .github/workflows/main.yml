@@ -21,6 +21,14 @@ jobs:
           channel: 'stable'
       - name: Get Packages
         run: flutter pub get
+
+      - name: Install OSV Scanner
+        run: |
+          go install github.com/google/osv-scanner/cmd/osv-scanner@v1
+
+      - name: Run Dependency Scan
+        run: osv-scanner scan --type=gomod
+
       - name : test app
         run: flutter test
 
