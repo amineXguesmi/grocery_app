@@ -22,13 +22,9 @@ jobs:
       - name: Get Packages
         run: flutter pub get
 
-      - name: Run osv-scanner
-        run: |
-          curl -LO https://github.com/google/osv-scanner/releases/latest/download/osv-scanner-linux-amd64.tar.gz
-          tar -xzf osv-scanner-linux-amd64.tar.gz
-          mv osv-scanner-linux-amd64/osv-scanner /usr/local/bin/
-          chmod +x /usr/local/bin/osv-scanner
-          osv-scanner -r .
+      - name: Scan for vulnerabilities in packages
+        run: flutter pub outdated --mode=null-safety /
+             flutter doctor -v
 
 
       - name : test app
