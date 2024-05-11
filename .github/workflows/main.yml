@@ -23,9 +23,7 @@ jobs:
         run: flutter pub get
 
       - name: Scan for vulnerabilities in packages
-        run: flutter pub outdated --mode=null-safety /
-             flutter doctor -v
-
+        run: flutter pub outdated --mode=null-safety && flutter doctor -v
 
       - name : test app
         run: flutter test
